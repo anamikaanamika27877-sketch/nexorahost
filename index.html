@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080910">
+
+<title>NexoraHost — Minecraft Server Hosting</title>
+
+<meta name="description"
+content="NexoraHost Minecraft server hosting. Explore hosting plans, server software and powerful server management.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #080910;
+  --panel: #10121d;
+  --panel2: #151827;
+  --text: #f5f6ff;
+  --muted: #979bb2;
+  --purple: #8b5cf6;
+  --blue: #5685ff;
+  --line: rgba(255,255,255,.09);
+  --green: #52e0a0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 10% 0%, #28165355, transparent 38%),
+    radial-gradient(ellipse at 100% 25%, #122b5a35, transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .17;
+  z-index: -1;
+  background-image:
+    linear-gradient(#ffffff08 1px, transparent 1px),
+    linear-gradient(90deg,#ffffff08 1px,transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom,black,transparent 85%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1160px, calc(100% - 40px));
+  margin: auto;
+}
+
+.navbar {
+  height: 76px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #080910d9;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -.7px;
+}
+
+.brand-icon {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg,var(--purple),var(--blue));
+  box-shadow: 0 0 28px #7954ff35;
+  font-size: 21px;
+}
+
+.brand span {
+  color: #a98bff;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  color: #b5b8cc;
+  transition: .2s;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 12px 17px;
+  color: white;
+  background: #ffffff08;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform .2s, border-color .2s, filter .2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  border-color: #9c80ff88;
+}
+
+.btn-primary {
+  border: 0;
+  background: linear-gradient(110deg,#8655f6,#527bff);
+  box-shadow: 0 8px 30px #7852f62c;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.12);
+}
+
+.menu-btn {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: 0;
+  color: white;
+}
+
+.hero {
+  padding: 100px 0 76px;
+  text-align: center;
+  position: relative;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #a88aff35;
+  background: #8b5cf612;
+  color: #c6b4ff;
+  border-radius: 100px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: clamp(42px,7.5vw,78px);
+  line-height: 1.04;
+  letter-spacing: -4px;
+  max-width: 900px;
+  margin: 27px auto 22px;
+}
+
+.gradient-text {
+  background: linear-gradient(100deg,#b69aff,#7e9dff,#7ce5e8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 620px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 30px;
+}
+
+.hero-actions .btn {
+  padding: 15px 23px;
+}
+
+.trust-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 30px;
+  color: #b7bad0;
+  font-size: 12px;
+}
+
+.trust-row span::before {
+  content: "✓";
+  color: var(--green);
+  margin-right: 7px;
+}
+
+.preview {
+  margin: 58px auto 0;
+  max-width: 890px;
+  border: 1px solid #9e82ff2b;
+  background: linear-gradient(140deg,#151526,#0d101b);
+  border-radius: 20px;
+  padding: 17px;
+  box-shadow: 0 35px 100px #0008,0 0 70px #7650ff0c;
+  text-align: left;
+  transform: perspective(1000px) rotateX(2deg);
+}
+
+.preview-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 6px 17px;
+  border-bottom: 1px solid var(--line);
+  gap: 10px;
+}
+
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.window-dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #53576d;
+}
+
+.window-title {
+  color: #999db5;
+  font-size: 11px;
+}
+
+.online-badge {
+  font-size: 10px;
+  color: var(--green);
+  border: 1px solid #52e0a032;
+  background: #52e0a00b;
+  padding: 7px 10px;
+  border-radius: 8px;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  padding-top: 15px;
+}
+
+.metric {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 17px;
+  background: #ffffff04;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.metric-value {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 9px 0;
+}
+
+.metric small {
+  color: #969bb2;
+  font-size: 10px;
+}
+
+.section {
+  padding: 85px 0;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto 43px;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: clamp(30px,4vw,46px);
+  letter-spacing: -1.8px;
+  line-height: 1.15;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 15px;
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 15px;
+  align-items: stretch;
+}
+
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(155deg,#141624,#0e1019);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 23px 19px;
+  transition: transform .25s,border-color .25s;
+}
+
+.plan:hover {
+  transform: translateY(-6px);
+  border-color: #8b5cf680;
+}
+
+.plan.featured {
+  border-color: #9975ff9c;
+  box-shadow: 0 0 35px #8b5cf614;
+  background: linear-gradient(155deg,#21173b,#111321 70%);
+}
+
+.popular {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  border-radius: 50px;
+  padding: 6px 12px;
+  background: linear-gradient(100deg,#8b5cf6,#527bff);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.plan-name {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.plan-desc {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 7px;
+  line-height: 1.7;
+  min-height: 38px;
+}
+
+.price {
+  margin: 22px 0 6px;
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.price small {
+  font-family: 'DM Sans',sans-serif;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.plan-note {
+  font-size: 10px;
+  color: #9a9eb3;
+  min-height: 14px;
+}
+
+.plan .btn {
+  width: 100%;
+  margin: 22px 0;
+}
+
+.plan ul {
+  list-style: none;
+  display: grid;
+  gap: 13px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  flex: 1;
+}
+
+.plan li {
+  color: #c3c6d8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.plan li::before {
+  content: "✓";
+  color: var(--green);
+  margin-right: 9px;
+}
+
+.demo-note {
+  max-width: 720px;
+  margin: 25px auto 0;
+  text-align: center;
+  color: #9da1b6;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 16px;
+}
+
+.feature {
+  border: 1px solid var(--line);
+  background: #11131eae;
+  border-radius: 17px;
+  padding: 25px;
+  transition: .2s;
+}
+
+.feature:hover {
+  border-color: #8b5cf655;
+  background: #171626;
+}
+
+.feature-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#8655f629,#527bff1b);
+  border: 1px solid #9c82ff24;
+  border-radius: 13px;
+  font-size: 21px;
+  margin-bottom: 20px;
+}
+
+.feature h3 {
+  font-size: 15px;
+  margin-bottom: 11px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.software-grid {
+  display: grid;
+  grid-template-columns: repeat(5,minmax(0,1fr));
+  gap: 13px;
+}
+
+.software {
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #11131e;
+  padding: 21px 10px;
+  text-align: center;
+}
+
+.software-icon {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.software strong {
+  display: block;
+  font-size: 12px;
+}
+
+.software small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 15px;
+}
+
+.step {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #11131e;
+}
+
+.step-number {
+  color: #a88aff;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.step h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: auto;
+}
+
+details {
+  border: 1px solid var(--line);
+  background: #11131e;
+  border-radius: 13px;
+  margin-bottom: 11px;
+  padding: 18px;
+}
+
+summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+summary::after {
+  content: "+";
+  float: right;
+  color: #b39aff;
+  font-size: 18px;
+}
+
+details[open] summary::after {
+  content: "−";
+}
+
+details p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+  padding-top: 14px;
+}
+
+.cta-box {
+  border: 1px solid #9676ff42;
+  background:
+    radial-gradient(ellipse at 0% 100%,#7747d82b,transparent 50%),
+    linear-gradient(120deg,#16142a,#111522);
+  border-radius: 23px;
+  padding: 55px 25px;
+  text-align: center;
+}
+
+.cta-box h2 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: clamp(30px,5vw,43px);
+  letter-spacing: -1.5px;
+}
+
+.cta-box p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 15px auto 25px;
+  max-width: 540px;
+}
+
+footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 65px;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 11px;
+  color: #b4b7c9;
+}
+
+/* Modals */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: #000b;
+  backdrop-filter: blur(9px);
+  overflow-y: auto;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-box {
+  position: relative;
+  width: min(460px,100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  border: 1px solid #8e75ff45;
+  border-radius: 20px;
+  background: #11131f;
+  box-shadow: 0 25px 90px #0008;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  border: 0;
+  color: #c3c5d7;
+  background: none;
+  font-size: 23px;
+}
+
+.modal-box h2 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 25px;
+  margin-bottom: 9px;
+}
+
+.modal-subtitle {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.field label {
+  color: #c8cbdd;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  color: white;
+  background: #090b14;
+  border: 1px solid #ffffff18;
+  border-radius: 10px;
+  padding: 13px;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #9b7cff;
+}
+
+.field option {
+  background: #10121d;
+}
+
+.modal-box .btn-primary {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.modal-switch {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 18px;
+}
+
+.text-button {
+  color: #b69aff;
+  border: 0;
+  background: none;
+  font-weight: 700;
+}
+
+.notice {
+  color: #ffd69a;
+  font-size: 11px;
+  line-height: 1.8;
+  padding: 12px;
+  margin: 15px 0;
+  border: 1px solid #ffc96a25;
+  background: #ffc96a09;
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media(max-width:900px) {
+  .plans {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 20px 14px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .steps {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .software-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+  }
+}
+
+@media(max-width:650px) {
+  .container {
+    width: calc(100% - 30px);
+  }
+
+  .navbar {
+    height: 68px;
+  }
+
+  .brand {
+    font-size: 18px;
+  }
+
+  .brand-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    background: #0d0f19;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 9px 0;
+    font-size: 14px;
+  }
+
+  .nav-actions .login-btn {
+    display: none;
+  }
+
+  .nav-actions .btn {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .hero {
+    padding: 75px 0 50px;
+  }
+
+  .hero h1 {
+    letter-spacing: -2.5px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .preview {
+    padding: 11px;
+    margin-top: 42px;
+    transform: none;
+  }
+
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric {
+    padding: 14px;
+  }
+
+  .section {
+    padding: 62px 0;
+  }
+
+  .plans {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .plan {
+    padding: 25px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .software-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-row {
+    gap: 12px;
+  }
+
+  .footer-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .modal-box {
+    padding: 24px 19px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="container nav-inner">
+
+    <a class="brand" href="#home">
+      <span class="brand-icon">N</span>
+      Nexora<span>Host</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#plans">Pricing</a>
+      <a href="#features">Features</a>
+      <a href="#software">Software</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="btn login-btn" onclick="openAuth('login')">
+        Login
+      </button>
+      <button class="btn btn-primary" onclick="openAuth('register')">
+        Get Started ↗
+      </button>
+      <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">
+        ☰
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container">
+
+    <div class="eyebrow">
+      <span class="dot"></span>
+      YOUR WORLD. YOUR RULES.
+    </div>
+
+    <h1>
+      Minecraft hosting,<br>
+      <span class="gradient-text">without limits.</span>
+    </h1>
+
+    <p>
+      Launch your next Minecraft world with a hosting experience
+      designed for creators, SMP communities and gamers.
+      Simple plans. Powerful controls. Your adventure.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#plans">
+        Explore Hosting Plans ↗
+      </a>
+      <a class="btn" href="#features">
+        Explore Features →
+      </a>
+    </div>
+
+    <div class="trust-row">
+      <span>Java Server Software</span>
+      <span>Mod & Plugin Ready</span>
+      <span>Flexible Plans</span>
+    </div>
+
+    <div class="preview">
+
+      <div class="preview-top">
+        <div class="window-dots">
+          <i></i><i></i><i></i>
+        </div>
+
+        <span class="window-title">
+          NEXORAHOST / SERVER OVERVIEW
+        </span>
+
+        <span class="online-badge">
+          ● UI PREVIEW
+        </span>
+      </div>
+
+      <div class="preview-grid">
+
+        <div class="metric">
+          <div class="metric-label">Server Status</div>
+          <div class="metric-value">Your Server</div>
+          <small>Dashboard preview</small>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Server Control</div>
+          <div class="metric-value">Start / Stop</div>
+          <small>Backend integration required</small>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">Server Software</div>
+          <div class="metric-value">Paper / Fabric</div>
+          <small>Choose during setup</small>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="plans">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">SIMPLE PRICING</div>
+      <h2>Choose your <span class="gradient-text">power level.</span></h2>
+      <p>
+        Start small, build your community and choose a plan
+        that matches your Minecraft server's needs.
+      </p>
+    </div>
+
+    <div class="plans">
+
+      <article class="plan">
+        <div class="plan-name">Free</div>
+        <div class="plan-desc">Try your first Minecraft world.</div>
+
+        <div class="price">₹0 <small>/ month</small></div>
+        <div class="plan-note">Demo plan — resources not provisioned</div>
+
+        <button class="btn" onclick="buyPlan('Free')">
+          Get Started
+        </button>
+
+        <ul>
+          <li>1 GB RAM — example limit</li>
+          <li>5 GB storage — example limit</li>
+          <li>Basic server configuration</li>
+          <li>Software selection preview</li>
+          <li>Community-focused setup</li>
+        </ul>
+      </article>
+
+      <article class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-desc">For friends and small SMPs.</div>
+
+        <div class="price">₹99 <small>/ month</small></div>
+        <div class="plan-note">Example price — not purchasable yet</div>
+
+        <button class="btn" onclick="buyPlan('Starter')">
+          Choose Starter
+        </button>
+
+        <ul>
+          <li>2 GB RAM — example limit</li>
+          <li>10 GB storage — example limit</li>
+          <li>Paper and Vanilla options</li>
+          <li>Mod and plugin support concept</li>
+          <li>Dashboard preview</li>
+        </ul>
+      </article>
+
+      <article class="plan featured">
+        <div class="popular">COMMUNITY FAVOURITE</div>
+
+        <div class="plan-name">Pro</div>
+        <div class="plan-desc">For growing communities.</div>
+
+        <div class="price">₹199 <small>/ month</small></div>
+        <div class="plan-note">Example price — not purchasable yet</div>
+
+        <button class="btn btn-primary" onclick="buyPlan('Pro')">
+          Choose Pro
+        </button>
+
+        <ul>
+          <li>4 GB RAM — example limit</li>
+          <li>20 GB storage — example limit</li>
+          <li>More software options</li>
+          <li>File manager interface concept</li>
+          <li>Server settings preview</li>
+        </ul>
+      </article>
+
+      <article class="plan">
+        <div class="plan-name">Ultra</div>
+        <div class="plan-desc">For larger worlds and modpacks.</div>
+
+        <div class="price">₹299 <small>/ month</small></div>
+        <div class="plan-note">Example price — not purchasable yet</div>
+
+        <button class="btn" onclick="buyPlan('Ultra')">
+          Choose Ultra
+        </button>
+
+        <ul>
+          <li>6 GB RAM — example limit</li>
+          <li>30 GB storage — example limit</li>
+          <li>Modded server options</li>
+          <li>Advanced settings concept</li>
+          <li>Dashboard preview</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <p class="demo-note">
+      IMPORTANT: All plans and resource amounts on this page are examples.
+      No server resources, payment service or uptime guarantee are currently
+      connected. Actual plans must match the infrastructure available.
+    </p>
+
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">BUILT FOR GAMERS</div>
+      <h2>Everything your server <span class="gradient-text">needs.</span></h2>
+      <p>
+        A hosting experience designed around the tools Minecraft
+        server owners use every day.
+      </p>
+    </div>
+
+    <div class="features-grid">
+
+      <article class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Quick Server Setup</h3>
+        <p>
+          Select your preferred server software and Minecraft version.
+          Automatic provisioning will require a connected backend.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-icon">🎮</div>
+        <h3>Server Controls</h3>
+        <p>
+          Plan a control panel with Start, Stop, Restart and server
+          status controls.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-icon">📟</div>
+        <h3>Live Console</h3>
+        <p>
+          A future console integration can show server logs and
+          allow authorised commands.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-icon">📁</div>
+        <h3>File Manager</h3>
+        <p>
+          Manage world files, configuration files, plugins and mods
+          through a secure server panel.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-icon">💾</div>
+        <h3>World Backups</h3>
+        <p>
+          Add scheduled backups and restore options when backend
+          storage is configured.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-icon">🛡️</div>
+        <h3>Security First</h3>
+        <p>
+          Real authentication, server isolation, access controls
+          and safe API permissions are required before launch.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="software">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">YOUR SERVER. YOUR CHOICE.</div>
+      <h2>Choose your <span class="gradient-text">software.</span></h2>
+      <p>
+        Plan your next server using the software your community prefers.
+        Actual availability depends on the deployed server system.
+      </p>
+    </div>
+
+    <div class="software-grid">
+
+      <div class="software">
+        <div class="software-icon">📦</div>
+        <strong>Paper</strong>
+        <small>Plugin servers</small>
+      </div>
+
+      <div class="software">
+        <div class="software-icon">⚡</div>
+        <strong>Purpur</strong>
+        <small>Extra configuration</small>
+      </div>
+
+      <div class="software">
+        <div class="software-icon">🧩</div>
+        <strong>Fabric</strong>
+        <small>Modded worlds</small>
+      </div>
+
+      <div class="software">
+        <div class="software-icon">🔧</div>
+        <strong>Forge</strong>
+        <small>Modded gameplay</small>
+      </div>
+
+      <div class="software">
+        <div class="software-icon">🌍</div>
+        <strong>Vanilla</strong>
+        <small>Original Minecraft</small>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how-it-works">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">HOW IT WORKS</div>
+      <h2>From plan to <span class="gradient-text">your world.</span></h2>
+      <p>
+        This is the intended user journey for the full NexoraHost platform.
+      </p>
+    </div>
+
+    <div class="steps">
+
+      <article class="step">
+        <div class="step-number">STEP 01</div>
+        <h3>Create an account</h3>
+        <p>Register and sign in through the planned account system.</p>
+      </article>
+
+      <article class="step">
+        <div class="step-number">STEP 02</div>
+        <h3>Choose a plan</h3>
+        <p>Select a suitable plan and complete checkout when payments are configured.</p>
+      </article>
+
+      <article class="step">
+        <div class="step-number">STEP 03</div>
+        <h3>Configure your server</h3>
+        <p>Choose software, Minecraft version and server name.</p>
+      </article>
+
+      <article class="step">
+        <div class="step-number">STEP 04</div>
+        <h3>Manage your world</h3>
+        <p>Use the future dashboard to control your provisioned server.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions, <span class="gradient-text">answered.</span></h2>
+      <p>Learn how the NexoraHost prototype is intended to work.</p>
+    </div>
+
+    <div class="faq-list">
+
+      <details>
+        <summary>Will Minecraft servers run 24/7?</summary>
+        <p>
+          Not yet. A connected, always-on server machine and
+          server-management backend are required. A website alone
+          cannot run Minecraft servers continuously.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can users create their own servers?</summary>
+        <p>
+          The website shows the intended flow. Automatic server
+          creation will only work after a secure backend and
+          server-management API are connected.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I use mods and plugins?</summary>
+        <p>
+          The planned platform supports Paper and Purpur for plugins,
+          and Fabric or Forge for compatible mods. Actual installation
+          requires a working server and compatible files.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can users pay using UPI?</summary>
+        <p>
+          UPI payments are not connected in this prototype.
+          A suitable payment provider, server-side verification
+          and order management must be configured first.
+        </p>
+      </details>
+
+      <details>
+        <summary>Is login working with real accounts?</summary>
+        <p>
+          No. The login and registration forms are frontend demos.
+          Never use a browser-only demo to protect real accounts,
+          payments or server controls.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-box">
+      <div class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</div>
+
+      <h2>Build something <span class="gradient-text">legendary.</span></h2>
+
+      <p>
+        Explore the plans and preview the NexoraHost server setup flow.
+        Real hosting activation will follow when infrastructure is ready.
+      </p>
+
+      <button class="btn btn-primary" onclick="openAuth('register')">
+        Get Started ↗
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+
+    <div>
+      <a class="brand" href="#home">
+        <span class="brand-icon">N</span>
+        Nexora<span>Host</span>
+      </a>
+
+      <p class="footer-copy" style="margin-top:12px">
+        Built for Minecraft communities.<br>
+        © <span id="year"></span> NexoraHost.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#plans">Pricing</a>
+      <a href="#features">Features</a>
+      <a href="#software">Software</a>
+      <a href="#faq">FAQ</a>
+    </div>
+
+  </div>
+</footer>
+
+<!-- LOGIN / REGISTER MODAL -->
+
+<div class="modal" id="authModal" role="dialog" aria-modal="true"
+     aria-labelledby="authTitle">
+
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModals()" aria-label="Close">
+      ×
+    </button>
+
+    <div id="authContent">
+
+      <h2 id="authTitle">Welcome to NexoraHost</h2>
+
+      <p class="modal-subtitle">
+        Preview the account flow for your hosting platform.
+      </p>
+
+      <form id="authForm">
+
+        <div class="field">
+          <label for="authEmail">Email address</label>
+          <input id="authEmail" type="email"
+                 placeholder="you@example.com" required>
+        </div>
+
+        <div class="field">
+          <label for="authPassword">Password</label>
+          <input id="authPassword" type="password"
+                 minlength="6" placeholder="At least 6 characters" required>
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="authSubmit">
+          Continue
+        </button>
+
+      </form>
+
+      <p class="modal-switch">
+        <span id="switchText">New to NexoraHost?</span>
+        <button class="text-button" id="switchButton"
+                onclick="switchAuth()">Create account</button>
+      </p>
+
+      <div class="notice">
+        Demo only: this form does not create a secure account or store
+        authentication credentials.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SERVER SETUP MODAL -->
+
+<div class="modal" id="setupModal" role="dialog" aria-modal="true"
+     aria-labelledby="setupTitle">
+
+  <div class="modal-box">
+
+    <button class="modal-close" onclick="closeModals()" aria-label="Close">
+      ×
+    </button>
+
+    <div id="setupContent">
+
+      <h2 id="setupTitle">Configure your server</h2>
+
+      <p class="modal-subtitle" id="selectedPlanText">
+        Choose your server settings.
+      </p>
+
+      <form id="setupForm">
+
+        <div class="field">
+          <label for="serverName">Server name</label>
+          <input id="serverName" type="text" maxlength="30"
+                 placeholder="My Minecraft SMP"
+                 pattern="[A-Za-z0-9 _-]{1,30}" required>
+        </div>
+
+        <div class="field">
+          <label for="serverSoftware">Server software</label>
+          <select id="serverSoftware" required>
+            <option value="Paper">Paper</option>
+            <option value="Purpur">Purpur</option>
+            <option value="Fabric">Fabric</option>
+            <option value="Forge">Forge</option>
+            <option value="Vanilla">Vanilla</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="minecraftVersion">Minecraft version</label>
+          <select id="minecraftVersion" required>
+            <option value="1.21.8">1.21.8 — example</option>
+            <option value="1.21.5">1.21.5 — example</option>
+            <option value="1.21.1">1.21.1 — example</option>
+            <option value="1.20.1">1.20.1 — example</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">
+          Preview Server Setup →
+        </button>
+
+      </form>
+
+      <div class="notice">
+        This creates a local preview only. No Minecraft server is
+        provisioned and no server files are downloaded.
+      </div>
+
+    </div>
+
+    <div id="setupResult" class="hidden">
+
+      <h2>Setup preview created</h2>
+
+      <p class="modal-subtitle">
+        Your configuration is ready to review. It has not been deployed.
+      </p>
+
+      <div class="metric">
+        <div class="metric-label">Server Name</div>
+        <div class="metric-value" id="resultName"
+             style="font-size:20px;overflow-wrap:anywhere"></div>
+      </div>
+
+      <div class="metric" style="margin-top:12px">
+        <div class="metric-label">Software / Version</div>
+        <div class="metric-value" id="resultSoftware"
+             style="font-size:17px"></div>
+      </div>
+
+      <div class="notice">
+        To create a real server, the next step is connecting a secure
+        backend and an authorised server-management system.
+      </div>
+
+      <button class="btn btn-primary" style="width:100%"
+              onclick="closeModals()">
+        Done
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+let selectedPlan = "Free";
+let authMode = "login";
+let demoSignedIn = false;
+let demoEmail = "";
+
+const authModal = document.getElementById("authModal");
+const setupModal = document.getElementById("setupModal");
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("open");
+}
+
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("navLinks").classList.remove("open");
+  });
+});
+
+function openAuth(mode = "login") {
+  authMode = mode;
+  updateAuthText();
+  authModal.classList.add("show");
+}
+
+function updateAuthText() {
+  const isRegister = authMode === "register";
+
+  document.getElementById("authTitle").textContent =
+    isRegister ? "Create your account" : "Welcome back";
+
+  document.getElementById("authSubmit").textContent =
+    isRegister ? "Create Demo Account" : "Sign In (Demo)";
+
+  document.getElementById("switchText").textContent =
+    isRegister ? "Already have an account?" : "New to NexoraHost?";
+
+  document.getElementById("switchButton").textContent =
+    isRegister ? "Sign in" : "Create account";
+}
+
+function switchAuth() {
+  authMode = authMode === "login" ? "register" : "login";
+  updateAuthText();
+}
+
+function buyPlan(plan) {
+  selectedPlan = plan;
+
+  if (!demoSignedIn) {
+    openAuth("login");
+    return;
+  }
+
+  openSetup();
+}
+
+document.getElementById("authForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  // Demonstration only. This does not authenticate a real user.
+  demoEmail = document.getElementById("authEmail").value.trim();
+  demoSignedIn = true;
+
+  authModal.classList.remove("show");
+
+  openSetup();
+});
+
+function openSetup() {
+  document.getElementById("setupContent").classList.remove("hidden");
+  document.getElementById("setupResult").classList.add("hidden");
+
+  document.getElementById("selectedPlanText").textContent =
+    "Selected plan: " + selectedPlan +
+    ". Choose the configuration for your preview.";
+
+  setupModal.classList.add("show");
+}
+
+document.getElementById("setupForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = document.getElementById("serverName").value.trim();
+  const software = document.getElementById("serverSoftware").value;
+  const version = document.getElementById("minecraftVersion").value;
+
+  if (!name) return;
+
+  document.getElementById("resultName").textContent = name;
+
+  document.getElementById("resultSoftware").textContent =
+    software + " / Minecraft " + version;
+
+  document.getElementById("setupContent").classList.add("hidden");
+  document.getElementById("setupResult").classList.remove("hidden");
+});
+
+function closeModals() {
+  authModal.classList.remove("show");
+  setupModal.classList.remove("show");
+}
+
+[authModal, setupModal].forEach(modal => {
+  modal.addEventListener("click", event => {
+    if (event.target === modal) {
+      modal.classList.remove("show");
+    }
+  });
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeModals();
+});
+</script>
+
+</body>
+</html>
